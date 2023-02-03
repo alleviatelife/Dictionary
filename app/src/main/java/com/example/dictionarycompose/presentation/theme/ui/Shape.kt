@@ -1,4 +1,4 @@
-package com.example.dictionarycompose.ui.theme
+package com.example.dictionarycompose.presentation.theme.ui
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
