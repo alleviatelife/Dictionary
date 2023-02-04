@@ -1,53 +1,218 @@
 {
   ConstraintSets: {
     start: {
-      profile_pic: {
-        width: 40,
-        height: 40,
-        start: ['parent', 'start', 16],
-        top: ['parent', 'top', 16],
-        custom: {
-          background: '#08ff04'
-        }
-      },
-      username: {
-        top: ['profile_pic', 'top'],
-        bottom: ['profile_pic', 'bottom'],
-        start: ['profile_pic', 'end', 16]
-      },
       box: {
-        width: 'spread',
+        height: '28%',
+        start: [
+          'parent',
+          'start',
+        ],
+        end: [
+          'parent',
+          'end',
+        ],
+        top: [
+          'parent',
+          'top',
+        ],
+      },
+      header_card: {
+        width: 'parent',
         height: 'spread',
-        start: ['parent', 'start'],
-        end: ['parent', 'end'],
-        top: ['parent', 'top'],
-        bottom: ['parent', 'bottom', -16],
-      }
+        start: [
+          'box',
+          'start',
+        ],
+        end: [
+          'box',
+          'end',
+        ],
+        top: [
+          'box',
+          'top',
+        ],
+        bottom: [
+          'box',
+          'bottom',
+          0
+        ],
+      },
+      search_bar: {
+        width: 'parent',
+        start: [
+          'header_card',
+          'start',
+          16
+        ],
+        end: [
+          'header_card',
+          'end',
+          16
+        ],
+        top: [
+          'header_card',
+          'top',
+          16
+        ],
+      },
+      word: {
+        width: 'preferWrap',
+        start: [
+          'search_bar',
+          'start',
+
+        ],
+        end: [
+          'search_bar',
+          'end',
+        ],
+        top: [
+          'search_bar',
+          'bottom',
+          8
+        ],
+      },
+      phonetic: {
+        width: 'preferWrap',
+        start: [
+          'search_bar',
+          'start'
+        ],
+        end: [
+          'search_bar',
+          'end',
+        ],
+        top: [
+          'word',
+          'bottom',
+        ],
+        bottom: [
+          'speak_button',
+          'top',
+        ]
+      },
+      speak_button: {
+        start: [
+          'search_bar',
+          'start'
+        ],
+        end: [
+          'search_bar',
+          'end',
+        ],
+        top: [
+          'phonetic',
+          'bottom',
+          8
+        ],
+        bottom: [
+          'box',
+          'bottom',
+          8
+        ],
+      },
     },
     end: {
-      profile_pic: {
-        width: 150,
-        height: 150,
-        start: ['parent', 'start'],
-        end: ['parent', 'end'],
-        top: ['parent', 'top', 16],
-        custom: {
-          background: '#FFFFFF'
-        }
-      },
-      username: {
-        top: ['profile_pic', 'bottom', 16],
-        end: ['parent', 'end'],
-        start: ['parent', 'start']
-      },
+
       box: {
-        width: 'spread',
+        height: '18%',
+        start: [
+          'parent',
+          'start',
+        ],
+        end: [
+          'parent',
+          'end',
+        ],
+        top: [
+          'parent',
+          'top',
+        ],
+      },
+      header_card: {
+        width: 'parent',
         height: 'spread',
-        start: ['parent', 'start'],
-        end: ['parent', 'end'],
-        top: ['parent', 'top'],
-        bottom: ['parent', 'bottom', -16],
-      }
+        start: [
+          'box',
+          'start',
+        ],
+        end: [
+          'box',
+          'end',
+        ],
+        top: [
+          'box',
+          'top',
+        ],
+        bottom: [
+          'box',
+          'bottom',
+          0
+        ],
+      },
+      search_bar: {
+        width: 'parent',
+        start: [
+          'header_card',
+          'start',
+          16
+        ],
+        end: [
+          'header_card',
+          'end',
+          16
+        ],
+        top: [
+          'header_card',
+          'top',
+          16
+        ],
+      },
+      word: {
+        width: 'preferWrap',
+        start: [
+          'search_bar',
+          'start',
+        ],
+        top: [
+          'speak_button',
+          'top',
+        ],
+        bottom: [
+          'speak_button',
+          'bottom',
+        ]
+      },
+      phonetic: {
+        width: 'preferWrap',
+        start: [
+          'word',
+          'end',
+          16
+        ],
+        top: [
+          'speak_button',
+          'top',
+          4
+        ],
+        bottom: [
+          'speak_button',
+          'bottom',
+        ]
+      },
+      speak_button: {
+        start: [
+          'phonetic',
+          'end',
+          16
+        ],
+        top: [
+          'search_bar',
+          'bottom',
+          8
+        ],
+      },
+
     }
   }
 }

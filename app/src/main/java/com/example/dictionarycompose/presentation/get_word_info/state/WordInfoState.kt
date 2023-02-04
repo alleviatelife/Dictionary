@@ -5,5 +5,5 @@ import com.example.dictionarycompose.domain.models.WordInfo
 data class WordInfoState(
     val isLoading: Boolean = false,
     val wordInfoList: List<WordInfo> = emptyList(),
-    val error: String = ""
+    val error: String = "",
 )

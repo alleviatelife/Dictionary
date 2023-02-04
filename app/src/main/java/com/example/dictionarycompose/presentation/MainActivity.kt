@@ -6,28 +6,24 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.*
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.tween
-import androidx.compose.foundation.gestures.rememberScrollableState
-import androidx.compose.foundation.gestures.scrollable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.SoftwareKeyboardController
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.*
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.dictionarycompose.presentation.components.HeaderSection2
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.dictionarycompose.presentation.components.wordDetail.WordDetailScreen
+import com.example.dictionarycompose.presentation.components.wordList.SwipingStates
+import com.example.dictionarycompose.presentation.components.wordList.WordListScreen
 import com.example.dictionarycompose.presentation.get_word_info.viewmodel.WordInfoViewModel
 import com.example.dictionarycompose.presentation.theme.ui.DictionaryComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,39 +32,59 @@ var keyboardController: SoftwareKeyboardController? = null;
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterialApi::class)
+    @OptIn(
+        ExperimentalMaterialApi::class,
+        ExperimentalComposeUiApi::class
+    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             DictionaryComposeTheme {
+
+
+
                 val viewModel = viewModel<WordInfoViewModel>()
                 val state = viewModel.state.value
                 val context = LocalContext.current
                 keyboardController = LocalSoftwareKeyboardController.current
-                val scrollState = rememberScrollState()
-                Column(Modifier.verticalScroll(scrollState)) {
+                val navController = rememberNavController()
 
-                    var animateToCollapsedState by remember { mutableStateOf(false) }
-                    val progress by animateFloatAsState(
-                        targetValue = if (animateToCollapsedState) 1f else 0f, // Based on boolean we change progress target
-                        animationSpec = tween(1000) // specifying animation type - Inbetweening animation with 1000ms duration
-                    )
-                    Spacer(modifier = Modifier.height(200.dp))
-                    HeaderSection2(context = context, progress = progress)
+                NavHost(
+                    navController = navController,
+                    startDestination = Screen.WordListScreen.route
+                ) {
+                    composable(
+                        route = Screen.WordListScreen.route
+                    ) {
 
+                        val swipingState =
+                            rememberSwipeableState(initialValue = SwipingStates.EXPANDED)
+                        WordListScreen(
+                            swipingState = swipingState,
+                            context = context,
+                            navController=navController
+                        )
+                    }
 
+                    composable(
+                        route = Screen.WordDetailScreen.route
+                    ) {
 
+                        val loginBackStackEntry = remember { navController.getBackStackEntry(route=Screen.WordListScreen.route) }
+                        val viewModel: WordInfoViewModel = hiltViewModel(loginBackStackEntry)
+                        WordDetailScreen(viewModel=viewModel)
+                    }
                 }
 
+
             }
+
+
         }
     }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-
 
 }
+
+
+
+
