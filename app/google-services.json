@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "616600547679",
+    "firebase_url": "https://datingapp-aff93.firebaseio.com",
+    "project_id": "datingapp-aff93",
+    "storage_bucket": "datingapp-aff93.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616600547679:android:9c5eebe5d86ff1bf6a06ea",
+        "android_client_info": {
+          "package_name": "com.alleviatelife.dictionarycompose"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "616600547679-i7ubs2taukgn5stauah75sillv4jnvuc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJ3WXyp7jkghNBHPLe6dtXYPD6UoUzKIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "616600547679-i7ubs2taukgn5stauah75sillv4jnvuc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

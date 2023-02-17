@@ -4,28 +4,46 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
+
 android {
-    namespace 'com.example.dictionarycompose'
+
+    signingConfigs {
+        debug {
+            storeFile file('/Users/rishabh/Desktop/AlleviateLife/Key')
+            storePassword 'Ishu@1994'
+            keyAlias 'AlleviateLifeKey'
+            keyPassword 'Ishu@1994'
+        }
+    }
+    namespace 'com.alleviatelife.dictionarycompose'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.dictionarycompose"
+        applicationId "com.alleviatelife.dictionarycompose"
         minSdk 21
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        versionCode 4
+        versionName "4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary true
         }
+
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+        debug{
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -92,6 +110,12 @@ dependencies {
     //Tab Layout
     implementation "com.google.accompanist:accompanist-pager:0.13.0"
     implementation "com.google.accompanist:accompanist-pager-indicators:0.13.0"
+
+    //firebase BOM
+    implementation platform('com.google.firebase:firebase-bom:31.2.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+
 }
 
 kapt {
